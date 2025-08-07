@@ -30,7 +30,11 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: 22
-          source: "./"
+          source: |
+            ./*
+            !.git/
+            !venv/
+            !.github/
           target: "/opt/Bharati-Clinic"
 
       - name: Run deployment script via SSH
@@ -41,6 +45,7 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             cd /opt/Bharati-Clinic
+            python3 -m venv venv
             source venv/bin/activate
             pip install -r requirements.txt
             python manage.py migrate
