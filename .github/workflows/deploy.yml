@@ -30,11 +30,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: 22
-          source: |
-            ./*
-            !.git/
-            !venv/
-            !.github/
+          source: "."
           target: "/opt/Bharati-Clinic"
 
       - name: Run deployment script via SSH
